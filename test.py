@@ -19,9 +19,10 @@ def start_timer():
         ss_new = '{0:02d}'.format(time_total % 60)
         timer.set('{}:{}:{}'.format(hh_new, mm_new, ss_new))
         time_total = time_total - 1
-        if time_total > 0:
+        if time_total > -1:
             frame_ind.after(1000, set_time, time_total)
         else:
+            timer.set('00:00:00')
             messagebox.showinfo('info', 'time is up')
 
     try:
@@ -29,7 +30,7 @@ def start_timer():
         mm = int(entry_mm.get())
         ss = int(entry_ss.get())
     except ValueError:
-        messagebox.showerror('error', 'value invalid')
+        messagebox.showerror('error', 'values invalid: enter integers.')
     else:
         time_total = hh * 3600 + mm * 60 + ss
         set_time(time_total)
@@ -41,14 +42,17 @@ frame_time.pack()
 label_hh = tk.Label(frame_time, text=u'hours')
 label_hh.pack(side='left')
 entry_hh = tk.Entry(frame_time, width=5)
+entry_hh.insert(tk.END, 0)
 entry_hh.pack(side='left')
 label_mm = tk.Label(frame_time, text=u'minutes')
 label_mm.pack(side='left')
 entry_mm = tk.Entry(frame_time, width=5)
+entry_mm.insert(tk.END, 0)
 entry_mm.pack(side='left')
 label_ss = tk.Label(frame_time, text=u'seconds')
 label_ss.pack(side='left')
 entry_ss = tk.Entry(frame_time, width=5)
+entry_ss.insert(tk.END, 0)
 entry_ss.pack(side='left')
 
 # ボタン
