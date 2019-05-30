@@ -46,7 +46,7 @@ restart by 'resume.'
 </tr>
 <tr>
 <td>pause</td>
-<td>Return></td>
+<td>Return</td>
 <td>start from beginning</td>
 </tr>
 </table>
