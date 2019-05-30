@@ -69,6 +69,8 @@ def pause_timer():
         status = 'run'
         var_pause.set('pause')
         set_time(current_time)
+    elif status == 'stop':
+        pass
 
 
 # 時:分:秒のエントリ
