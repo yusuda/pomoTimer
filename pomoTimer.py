@@ -103,6 +103,7 @@ button_start = tk.Button(frame_button, textvariable=var_start, command=start_tim
 button_start.pack(side='left')
 button_pause = tk.Button(frame_button, textvariable=var_pause, command=pause_timer)
 button_pause.pack(side='left')
+root.bind('<Return>', lambda x: start_timer())
 
 # 時間の表示
 status = 'stop'
