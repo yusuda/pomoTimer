@@ -4,6 +4,10 @@
 import tkinter as tk
 from tkinter import messagebox
 
+# バグ
+# カウントダウン中にstopを押すと一瞬最初の数字が出る
+# 終了後にpauseを押すとresumeに切り替わり，resumeを押すと一時停止した位置から再生する
+
 # ルート
 root = tk.Tk()
 root.title('Simple Pomodoro Timer 1.0')
@@ -12,9 +16,12 @@ root.geometry('360x200')
 # カウントダウンの処理
 def start_timer():
     global status
-    status = 'run'
+    if status == 'run':
+        status = 'stop'
+    else:
+        status = 'run'
+        var_start.set('stop')
     # button_start.state(['disabled'])
-    var_start.set('restart')
 
     try:
         hh = int(entry_hh.get())
@@ -33,28 +40,34 @@ def set_time(time_total):
     ss_new = '{0:02d}'.format(time_total % 60)
     timer.set('{}:{}:{}'.format(hh_new, mm_new, ss_new))
     time_total = time_total - 1
+    global status
     if time_total > -1 and status == 'run':
         frame_ind.after(1000, set_time, time_total)
     elif status == 'pause':
         global current_time
         current_time = time_total
+    elif status == 'stop':
+        var_start.set('start')
     else:
         timer.set('00:00:00')
         var_start.set('start')
+        status = 'stop'
         messagebox.showinfo('info', 'time is up')
 
 
 def pause_timer():
-    if var_pause.get() == 'pause':
-        var_pause.set('resume')
-    elif var_pause.get() == 'resume':
-        var_pause.set('pause')
+    # if var_pause.get() == 'pause':
+    #     var_pause.set('resume')
+    # elif var_pause.get() == 'resume':
+    #     var_pause.set('pause')
 
     global status
     if status == 'run':
         status = 'pause'
+        var_pause.set('resume')
     elif status == 'pause':
         status = 'run'
+        var_pause.set('pause')
         set_time(current_time)
 
 
@@ -90,7 +103,7 @@ button_pause = tk.Button(frame_button, textvariable=var_pause, command=pause_tim
 button_pause.pack(side='left')
 
 # 時間の表示
-status = 'run'
+status = 'stop'
 frame_ind = tk.Frame(root)
 frame_ind.pack()
 timer = tk.StringVar()
