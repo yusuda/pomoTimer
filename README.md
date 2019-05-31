@@ -45,12 +45,30 @@ restart by 'resume.'
 <td>stop</td>
 </tr>
 <tr>
+<td>run</td>
+<td>Escape</td>
+<td>pause</td>
+</tr>
+<tr>
 <td>pause</td>
 <td>Return</td>
-<td>start from beginning</td>
+<td>start from the beginning</td>
+</tr>
+<tr>
+<td>pause</td>
+<td>Escape</td>
+<td>start from the paused time</td>
 </tr>
 </table>
 
 Note that this script has to be executed on Python 3.x series. Your
-system is required to enable the tkinter module other than the minimum
-construction.
+system is required to enable the tkinter and the pygame module other
+than the minimum construction.
+
+You can install the modules via pip as follows:
+
+<code>pip install tkinter</code>
+<code>pip install pygame</code>
+
+Or if you need to install pip at first, see <a
+href="https://pip.pypa.io/en/stable/installing/">here</a>.

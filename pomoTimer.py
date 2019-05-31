@@ -51,7 +51,7 @@ def set_time(time_total):
         frame_ind.after(1000, set_time, time_total)
     elif status == 'pause':
         global current_time
-        current_time = time_total
+        current_time = time_total + 1
     elif status == 'stop':
         var_start.set('start')
     else:
@@ -111,6 +111,7 @@ button_start.pack(side='left')
 button_pause = tk.Button(frame_button, textvariable=var_pause, command=pause_timer)
 button_pause.pack(side='left')
 root.bind('<Return>', lambda x: start_timer())
+root.bind('<Escape>', lambda x: pause_timer())
 
 # 時間の表示
 status = 'stop'
