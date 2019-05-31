@@ -3,10 +3,16 @@
 
 import tkinter as tk
 from tkinter import messagebox
+import pygame
 
 # バグ
 # カウントダウン中にstopを押すと一瞬最初の数字が出る
-# 終了後にpauseを押すとresumeに切り替わり，resumeを押すと一時停止した位置から再生する
+# 終了後にresumeを押すと一時停止した位置から再生する
+
+# SEの読み込み
+pygame.init()
+pygame.mixer.init()
+se1 = pygame.mixer.Sound('./se1.wav')
 
 # ルート
 root = tk.Tk()
@@ -49,6 +55,7 @@ def set_time(time_total):
     elif status == 'stop':
         var_start.set('start')
     else:
+        se1.play()
         timer.set('00:00:00')
         var_start.set('start')
         status = 'stop'
