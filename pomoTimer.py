@@ -30,9 +30,21 @@ def start_timer():
     # button_start.state(['disabled'])
 
     try:
-        hh = int(entry_hh.get())
-        mm = int(entry_mm.get())
-        ss = int(entry_ss.get())
+        if entry_hh.get() == '':
+            hh = 0
+        else:
+            hh = entry_hh.get()
+        if entry_mm.get() == '':
+            mm = 0
+        else:
+            mm = entry_mm.get()
+        if entry_ss.get() == '':
+            ss = 0
+        else:
+            ss = entry_ss.get()
+        hh = int(hh)
+        mm = int(mm)
+        ss = int(ss)
     except ValueError:
         messagebox.showerror('error', 'values invalid: enter integers.')
     else:
