@@ -72,3 +72,5 @@ You can install the modules via pip as follows:
 
 Or if you need to install pip at first, see <a
 href="https://pip.pypa.io/en/stable/installing/">here</a>.
+
+I thank <a href="https://soundeffect-lab.info/sound/animal/">https://soundeffect-lab.info/sound/animal/</a> for the sound effect.
