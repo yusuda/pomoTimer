@@ -4,20 +4,24 @@
 import tkinter as tk
 from tkinter import messagebox
 import pygame
+import os
 
 # バグ
 # カウントダウン中にstopを押すと一瞬最初の数字が出る
 # 終了後にresumeを押すと一時停止した位置から再生する
 
-# SEの読み込み
-pygame.init()
-pygame.mixer.init()
-se1 = pygame.mixer.Sound('./se1.wav')
-
 # ルート
 root = tk.Tk()
 root.title('Simple Pomodoro Timer 1.0')
 root.geometry('360x200')
+
+# SEの読み込み
+pygame.init()
+pygame.mixer.init()
+se1 = pygame.mixer.Sound(os.path.join(os.environ['HOME'],
+                                      'Github',
+                                      'pomoTimer',
+                                      'se1.wav'))
 
 # カウントダウンの処理
 def start_timer():
@@ -99,6 +103,7 @@ label_hh = tk.Label(frame_time, text=u'hours')
 label_hh.pack(side='left')
 entry_hh = tk.Entry(frame_time, width=5)
 entry_hh.insert(tk.END, 0)
+entry_hh.focus_set()
 entry_hh.pack(side='left')
 label_mm = tk.Label(frame_time, text=u'minutes')
 label_mm.pack(side='left')
